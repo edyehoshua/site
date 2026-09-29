@@ -62,20 +62,22 @@ body::after {
   position: fixed;
   z-index: -1;
   pointer-events: none;
-  inset: -35%;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 180% 180%;
 }
 
 body::before {
   background-image:
     radial-gradient(
-      ellipse 100% 88% at 12% 0%,
+      ellipse 58% 50% at 30% 22%,
       var(--glow) 0%,
-      transparent 78%
+      transparent 70%
     ),
     radial-gradient(
-      ellipse 95% 90% at 85% 100%,
+      ellipse 52% 48% at 74% 76%,
       var(--warmth) 0%,
-      transparent 80%
+      transparent 72%
     );
   animation: paper-drift 18s ease-in-out infinite alternate;
   animation-delay: -7s;
@@ -84,14 +86,14 @@ body::before {
 body::after {
   background-image:
     radial-gradient(
-      ellipse 88% 95% at 100% 18%,
+      ellipse 50% 54% at 78% 24%,
       var(--shade) 0%,
-      transparent 76%
+      transparent 70%
     ),
     radial-gradient(
-      ellipse 80% 75% at 0% 90%,
+      ellipse 48% 44% at 22% 78%,
       color-mix(in srgb, var(--glow) 85%, transparent) 0%,
-      transparent 74%
+      transparent 68%
     );
   animation: paper-drift-alt 14s ease-in-out infinite alternate;
   animation-delay: -4s;
@@ -99,22 +101,22 @@ body::after {
 
 @keyframes paper-drift {
   from {
-    transform: translate3d(-12%, -9%, 0) scale(0.94);
-    opacity: 0.42;
+    background-position: 0% 0%;
+    opacity: 0.5;
   }
   to {
-    transform: translate3d(13%, 10%, 0) scale(1.2);
+    background-position: 100% 80%;
     opacity: 1;
   }
 }
 
 @keyframes paper-drift-alt {
   from {
-    transform: translate3d(11%, 7%, 0) scale(1.16);
-    opacity: 0.38;
+    background-position: 100% 0%;
+    opacity: 0.45;
   }
   to {
-    transform: translate3d(-12%, -8%, 0) scale(0.92);
+    background-position: 0% 100%;
     opacity: 1;
   }
 }
@@ -185,23 +187,23 @@ body::after {
 
 @keyframes light-inhale {
   from {
-    transform: translate3d(-18%, -14%, 0) scale(0.8);
-    opacity: 0.08;
+    background-position: 0% 0%;
+    opacity: 0.4;
   }
   to {
-    transform: translate3d(16%, 14%, 0) scale(1.24);
+    background-position: 100% 85%;
     opacity: 1;
   }
 }
 
 @keyframes light-exhale {
   from {
-    transform: translate3d(16%, 12%, 0) scale(1.2);
+    background-position: 100% 0%;
     opacity: 1;
   }
   to {
-    transform: translate3d(-18%, -12%, 0) scale(0.82);
-    opacity: 0.1;
+    background-position: 0% 100%;
+    opacity: 0.35;
   }
 }
 
