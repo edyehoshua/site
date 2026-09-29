@@ -6,9 +6,9 @@
   --foreground: #000000;
   --muted: #4b5563;
   --faint: #6b7280;
-  --glow: #fffdf8;
-  --shade: #efe6d6;
-  --warmth: #e4d9c6;
+  --glow: #fff4e0;
+  --shade: #e4cdb0;
+  --warmth: #d4b892;
   color-scheme: light;
 }
 
@@ -17,9 +17,9 @@
   --foreground: #f3f0e8;
   --muted: #a39e93;
   --faint: #868176;
-  --glow: #6a6154;
-  --shade: #0c0b0a;
-  --warmth: #3d362e;
+  --glow: #9a8b74;
+  --shade: #070605;
+  --warmth: #5a4e42;
   color-scheme: dark;
 }
 
@@ -29,9 +29,9 @@
     --foreground: #f3f0e8;
     --muted: #a39e93;
     --faint: #868176;
-    --glow: #6a6154;
-    --shade: #0c0b0a;
-    --warmth: #3d362e;
+    --glow: #9a8b74;
+    --shade: #070605;
+    --warmth: #5a4e42;
     color-scheme: dark;
   }
 }
@@ -68,53 +68,53 @@ body::after {
 body::before {
   background-image:
     radial-gradient(
-      ellipse 78% 68% at 18% 8%,
+      ellipse 100% 88% at 12% 0%,
       var(--glow) 0%,
-      transparent 68%
+      transparent 78%
     ),
     radial-gradient(
-      ellipse 72% 64% at 88% 96%,
+      ellipse 95% 90% at 85% 100%,
       var(--warmth) 0%,
-      transparent 70%
+      transparent 80%
     );
-  animation: paper-drift 20s ease-in-out infinite alternate;
-  animation-delay: -8s;
+  animation: paper-drift 18s ease-in-out infinite alternate;
+  animation-delay: -7s;
 }
 
 body::after {
   background-image:
     radial-gradient(
-      ellipse 64% 72% at 92% 12%,
+      ellipse 88% 95% at 100% 18%,
       var(--shade) 0%,
-      transparent 66%
+      transparent 76%
     ),
     radial-gradient(
-      ellipse 58% 52% at 8% 88%,
-      color-mix(in srgb, var(--glow) 72%, transparent) 0%,
-      transparent 64%
+      ellipse 80% 75% at 0% 90%,
+      color-mix(in srgb, var(--glow) 85%, transparent) 0%,
+      transparent 74%
     );
-  animation: paper-drift-alt 16s ease-in-out infinite alternate;
-  animation-delay: -5s;
+  animation: paper-drift-alt 14s ease-in-out infinite alternate;
+  animation-delay: -4s;
 }
 
 @keyframes paper-drift {
   from {
-    transform: translate3d(-8%, -6%, 0) scale(1);
-    opacity: 0.78;
+    transform: translate3d(-12%, -9%, 0) scale(0.94);
+    opacity: 0.42;
   }
   to {
-    transform: translate3d(9%, 7%, 0) scale(1.12);
+    transform: translate3d(13%, 10%, 0) scale(1.2);
     opacity: 1;
   }
 }
 
 @keyframes paper-drift-alt {
   from {
-    transform: translate3d(7%, 4%, 0) scale(1.08);
-    opacity: 0.7;
+    transform: translate3d(11%, 7%, 0) scale(1.16);
+    opacity: 0.38;
   }
   to {
-    transform: translate3d(-8%, -6%, 0) scale(1);
+    transform: translate3d(-12%, -8%, 0) scale(0.92);
     opacity: 1;
   }
 }
