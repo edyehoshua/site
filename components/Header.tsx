@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/hooks/useLanguage";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Inline SVG icons for reliability
 const GithubIcon = () => (
@@ -180,9 +181,12 @@ export function Header() {
 
   return (
     <header className="mb-16">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight mb-6">
-        {t.greeting}
-      </h1>
+      <div className="flex items-start justify-between gap-4 mb-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight">
+          {t.greeting}
+        </h1>
+        <ThemeToggle />
+      </div>
       <div className="flex gap-4">
         {socialLinks.map(({ icon: Icon, href, label }) =>
           href ? (
