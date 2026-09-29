@@ -191,7 +191,7 @@ export function Header() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:opacity-60 transition-opacity"
+              className="text-foreground hover:opacity-60 transition-opacity"
               aria-label={label}
             >
               <Icon />
@@ -199,7 +199,7 @@ export function Header() {
           ) : (
             <span
               key={label}
-              className="text-black"
+              className="text-foreground"
               aria-label={`${label} (no URL yet)`}
               title={`${label} (no URL yet)`}
             >

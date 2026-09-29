@@ -5,7 +5,7 @@ import { Art } from '@/components/Art';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FAF9F6] text-black px-8 py-16 md:px-16 md:py-24 max-w-4xl mx-auto">
+    <main className="min-h-screen max-w-4xl mx-auto px-8 py-16 md:px-16 md:py-24 text-foreground">
       <Header />
       <Projects />
       <Education />
