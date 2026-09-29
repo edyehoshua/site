@@ -63,7 +63,14 @@ export function Projects() {
         {projects.map((project) => (
           <li key={project.name} className="flex items-center gap-3">
             <span>—</span>
-            <span className="text-foreground">{project.name}</span>
+            <a
+              href={project.url ?? project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground no-underline hover:opacity-60 transition-opacity"
+            >
+              {project.name}
+            </a>
             {project.url && (
               <a
                 href={project.url}

@@ -63,7 +63,14 @@ export function Art() {
         {artItems.map((item) => (
           <li key={item.name} className="flex flex-wrap items-center gap-3">
             <span>—</span>
-            <span className="text-foreground">{item.name}</span>
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground no-underline hover:opacity-60 transition-opacity"
+            >
+              {item.name}
+            </a>
             <a
               href={item.url}
               target="_blank"
