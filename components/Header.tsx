@@ -1,6 +1,51 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
+
+const themeKey = "site-theme";
+const themeChangeEvent = "site-theme-change";
+
+function isDarkTheme() {
+  const theme = document.documentElement.dataset.theme;
+  return theme === "dark" || (theme !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+}
+
+function subscribeToTheme(onChange: () => void) {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const onStorage = (event: StorageEvent) => {
+    if (event.key !== themeKey) return;
+    if (event.newValue === "light" || event.newValue === "dark") {
+      document.documentElement.dataset.theme = event.newValue;
+    } else {
+      delete document.documentElement.dataset.theme;
+    }
+    onChange();
+  };
+
+  media.addEventListener("change", onChange);
+  window.addEventListener("storage", onStorage);
+  window.addEventListener(themeChangeEvent, onChange);
+
+  return () => {
+    media.removeEventListener("change", onChange);
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener(themeChangeEvent, onChange);
+  };
+}
+
+const MoonIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20.3 15.6A8.5 8.5 0 0 1 8.4 3.7a8.5 8.5 0 1 0 11.9 11.9Z" />
+  </svg>
+);
+
+const SunIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+  </svg>
+);
 
 // Inline SVG icons for reliability
 const GithubIcon = () => (
@@ -150,6 +195,18 @@ type SocialLink = {
 
 export function Header() {
   const { t } = useLanguage();
+  const darkTheme = useSyncExternalStore(subscribeToTheme, isDarkTheme, () => false);
+
+  const toggleTheme = () => {
+    const nextTheme = darkTheme ? "light" : "dark";
+    document.documentElement.dataset.theme = nextTheme;
+    try {
+      localStorage.setItem(themeKey, nextTheme);
+    } catch {
+      // The toggle still works when storage is unavailable.
+    }
+    window.dispatchEvent(new Event(themeChangeEvent));
+  };
 
   const socialLinks: SocialLink[] = [
     { icon: GithubIcon, href: "https://github.com/jhonnyisaacc", label: "GitHub" },
@@ -183,7 +240,7 @@ export function Header() {
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight mb-6">
         {t.greeting}
       </h1>
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
         {socialLinks.map(({ icon: Icon, href, label }) =>
           href ? (
             <a
@@ -207,6 +264,16 @@ export function Header() {
             </span>
           ),
         )}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="text-black ml-2 cursor-pointer hover:opacity-60 transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2"
+          aria-label={darkTheme ? "Switch to light theme" : "Switch to dark theme"}
+          aria-pressed={darkTheme}
+          title={darkTheme ? "Switch to light theme" : "Switch to dark theme"}
+        >
+          {darkTheme ? <SunIcon /> : <MoonIcon />}
+        </button>
       </div>
     </header>
   );
