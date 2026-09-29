@@ -63,17 +63,17 @@ export function Art() {
         {artItems.map((item) => (
           <li key={item.name} className="flex flex-wrap items-center gap-3">
             <span>—</span>
-            <span className="text-black">{item.name}</span>
+            <span className="text-foreground">{item.name}</span>
             <a
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:opacity-60 transition-opacity"
+              className="text-foreground hover:opacity-60 transition-opacity"
               aria-label={`Open ${item.name}`}
             >
               <LinkIcon />
             </a>
-            <span className="text-gray-600">{item.description}</span>
+            <span className="text-muted">{item.description}</span>
             {item.links.length > 0 && (
               <div className="flex items-center gap-2">
                 {item.links.map(({ label, href, icon: Icon }) =>
@@ -84,7 +84,7 @@ export function Art() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="text-black hover:opacity-60 transition-opacity"
+                      className="text-foreground hover:opacity-60 transition-opacity"
                     >
                       <Icon />
                     </a>
@@ -93,7 +93,7 @@ export function Art() {
                       key={label}
                       aria-label={`${label} (no URL yet)`}
                       title={`${label} (no URL yet)`}
-                      className="text-black/45"
+                      className="text-foreground/45"
                     >
                       <Icon />
                     </span>

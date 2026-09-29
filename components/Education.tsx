@@ -10,7 +10,7 @@ export function Education() {
     <section className="mb-12">
       <h2 className="text-lg font-medium tracking-wide mb-6">{t.education}</h2>
       <ul className="space-y-2">
-        <li className="text-black">
+        <li className="text-foreground">
           — {t.educationItem}, Universidad Monteávila{" "}
           <a
             href="https://www.uma.edu.ve/ciencias-administrativas/"

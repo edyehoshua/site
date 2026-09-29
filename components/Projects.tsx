@@ -69,26 +69,26 @@ export function Projects() {
         {projects.map((project) => (
           <li key={project.name} className="flex items-center gap-3">
             <span>—</span>
-            <span className="text-black">{project.name}</span>
+            <span className="text-foreground">{project.name}</span>
             {project.url && (
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:opacity-60 transition-opacity"
+                className="text-foreground hover:opacity-60 transition-opacity"
                 aria-label={`Open ${project.name}`}
               >
                 <LinkIcon />
               </a>
             )}
-            <span className="text-gray-600">{project.description}</span>
+            <span className="text-muted">{project.description}</span>
             {project.isWip && (
-              <span className="font-mono italic text-sm text-gray-500">
+              <span className="font-mono italic text-sm text-faint">
                 {t.wip}
               </span>
             )}
             {project.isPrivate && (
-              <span className="font-mono italic text-sm text-gray-500">
+              <span className="font-mono italic text-sm text-faint">
                 {t.privateLabel}
               </span>
             )}
@@ -97,7 +97,7 @@ export function Projects() {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:opacity-60 transition-opacity"
+                className="text-foreground hover:opacity-60 transition-opacity"
                 aria-label={`GitHub repository for ${project.name}`}
               >
                 <GithubIcon />
