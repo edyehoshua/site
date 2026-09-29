@@ -6,6 +6,8 @@
   --foreground: #000000;
   --ambient-light: 255 253 249;
   --ambient-shade: 243 240 232;
+  --ambient-light-alpha: 100%;
+  --ambient-shade-alpha: 85%;
 }
 
 @theme inline {
@@ -23,21 +25,21 @@ body {
   background-color: var(--background);
   background-image:
     radial-gradient(
-      ellipse 80% 70% at 18% 12%,
-      rgb(var(--ambient-light) / 40%) 0%,
-      rgb(var(--ambient-light) / 0%) 80%
+      ellipse 65% 65% at 18% 12%,
+      rgb(var(--ambient-light) / var(--ambient-light-alpha)) 0%,
+      rgb(var(--ambient-light) / 0%) 88%
     ),
     radial-gradient(
-      ellipse 85% 75% at 85% 88%,
-      rgb(var(--ambient-shade) / 18%) 0%,
-      rgb(var(--ambient-shade) / 0%) 80%
+      ellipse 75% 70% at 85% 88%,
+      rgb(var(--ambient-shade) / var(--ambient-shade-alpha)) 0%,
+      rgb(var(--ambient-shade) / 0%) 88%
     );
   background-repeat: no-repeat;
-  background-size: 130% 130%, 135% 135%;
+  background-size: 150% 150%, 150% 150%;
   background-position: 0% 0%, 100% 100%;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
-  animation: ambient-breath 26s ease-in-out infinite;
+  animation: ambient-breath 22s ease-in-out infinite;
 }
 
 @keyframes ambient-breath {
@@ -45,7 +47,7 @@ body {
     background-position: 0% 0%, 100% 100%;
   }
   50% {
-    background-position: 4% 5%, 96% 95%;
+    background-position: 38% 26%, 62% 74%;
   }
 }
 
@@ -55,6 +57,8 @@ body {
   --foreground: #F7F4EE;
   --ambient-light: 39 36 31;
   --ambient-shade: 16 15 13;
+  --ambient-light-alpha: 55%;
+  --ambient-shade-alpha: 45%;
   --color-black: var(--foreground);
   --color-gray-600: #BFB9AE;
   --color-gray-500: #AAA499;
@@ -67,6 +71,8 @@ body {
     --foreground: #F7F4EE;
     --ambient-light: 39 36 31;
     --ambient-shade: 16 15 13;
+    --ambient-light-alpha: 55%;
+    --ambient-shade-alpha: 45%;
     --color-black: var(--foreground);
     --color-gray-600: #BFB9AE;
     --color-gray-500: #AAA499;
