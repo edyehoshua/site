@@ -64,20 +64,21 @@ body::after {
   pointer-events: none;
   inset: 0;
   background-repeat: no-repeat;
-  background-size: 180% 180%;
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 body::before {
   background-image:
     radial-gradient(
-      ellipse 58% 50% at 30% 22%,
+      ellipse 46% 40% at 38% 32%,
       var(--glow) 0%,
-      transparent 70%
+      transparent 64%
     ),
     radial-gradient(
-      ellipse 52% 48% at 74% 76%,
+      ellipse 42% 38% at 62% 68%,
       var(--warmth) 0%,
-      transparent 72%
+      transparent 66%
     );
   animation: paper-drift 18s ease-in-out infinite alternate;
   animation-delay: -7s;
@@ -86,38 +87,34 @@ body::before {
 body::after {
   background-image:
     radial-gradient(
-      ellipse 50% 54% at 78% 24%,
+      ellipse 40% 44% at 64% 30%,
       var(--shade) 0%,
-      transparent 70%
+      transparent 62%
     ),
     radial-gradient(
-      ellipse 48% 44% at 22% 78%,
-      color-mix(in srgb, var(--glow) 85%, transparent) 0%,
-      transparent 68%
+      ellipse 38% 36% at 34% 70%,
+      color-mix(in srgb, var(--glow) 80%, transparent) 0%,
+      transparent 62%
     );
-  animation: paper-drift-alt 14s ease-in-out infinite alternate;
-  animation-delay: -4s;
+  animation: paper-drift-alt 18s ease-in-out infinite alternate;
+  animation-delay: -7s;
 }
 
 @keyframes paper-drift {
   from {
-    background-position: 0% 0%;
-    opacity: 0.5;
+    opacity: 0.35;
   }
   to {
-    background-position: 100% 80%;
     opacity: 1;
   }
 }
 
 @keyframes paper-drift-alt {
   from {
-    background-position: 100% 0%;
-    opacity: 0.45;
+    opacity: 1;
   }
   to {
-    background-position: 0% 100%;
-    opacity: 1;
+    opacity: 0.3;
   }
 }
 
@@ -167,8 +164,8 @@ body::after {
 
 :root.dark body::after {
   animation-name: paper-drift-alt;
-  animation-duration: 14s;
-  animation-delay: -4s;
+  animation-duration: 18s;
+  animation-delay: -7s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -180,30 +177,26 @@ body::after {
 
   :root:not(.light) body::after {
     animation-name: paper-drift-alt;
-    animation-duration: 14s;
-    animation-delay: -4s;
+    animation-duration: 18s;
+    animation-delay: -7s;
   }
 }
 
 @keyframes light-inhale {
   from {
-    background-position: 0% 0%;
-    opacity: 0.4;
+    opacity: 0.22;
   }
   to {
-    background-position: 100% 85%;
     opacity: 1;
   }
 }
 
 @keyframes light-exhale {
   from {
-    background-position: 100% 0%;
     opacity: 1;
   }
   to {
-    background-position: 0% 100%;
-    opacity: 0.35;
+    opacity: 0.18;
   }
 }
 
