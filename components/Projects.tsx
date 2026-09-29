@@ -35,23 +35,17 @@ export function Projects() {
 
   const projects: Project[] = [
     {
-      name: "davar.bible",
+      name: "davar",
       description: t.projectDescriptions.davar,
       url: "https://davar.bible",
       githubUrl: "https://github.com/jhonnyisaacc/davar",
       isWip: false,
     },
     {
-      name: "nave",
-      description: t.projectDescriptions.nave,
-      githubUrl: "https://github.com/jhonnyisaacc/nave",
+      name: "rocket",
+      description: t.projectDescriptions.rocket,
+      githubUrl: "https://github.com/jhonnyisaacc/rocket",
       isWip: false,
-    },
-    {
-      name: "qahal",
-      description: t.projectDescriptions.qahal,
-      githubUrl: "https://github.com/jhonnyisaacc/qahal",
-      isWip: true,
     },
     {
       name: "car",

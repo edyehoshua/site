@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/hooks/useLanguage";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Inline SVG icons for reliability
 const GithubIcon = () => (
@@ -207,6 +208,7 @@ export function Header() {
             </span>
           ),
         )}
+        <ThemeToggle />
       </div>
     </header>
   );
