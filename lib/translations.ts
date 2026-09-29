@@ -7,8 +7,7 @@ export type Translations = {
   art: string;
   projectDescriptions: {
     davar: string;
-    nave: string;
-    qahal: string;
+    rocket: string;
     car: string;
   };
   educationItem: string;
@@ -27,9 +26,8 @@ export const translations: Record<Language, Translations> = {
     education: "EDUCATION",
     art: "ART",
     projectDescriptions: {
-      davar: "bible app",
-      nave: "trading copilot",
-      qahal: "find people in the emunah close to you",
+      davar: "Emunah app",
+      rocket: "markets copilot data",
       car: "long distance ride sharing",
     },
     educationItem: "Major in Business Administration",
@@ -46,9 +44,8 @@ export const translations: Record<Language, Translations> = {
     education: "EDUCACIÓN",
     art: "ARTE",
     projectDescriptions: {
-      davar: "app de biblia",
-      nave: "copiloto de trading",
-      qahal: "encuentra personas en la emunah cerca de ti",
+      davar: "app de Emunah",
+      rocket: "copiloto de datos de mercados",
       car: "ride sharing de larga distancia",
     },
     educationItem: "Licenciatura en Administración de Empresas",
