@@ -1,6 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/hooks/useLanguage";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Inline SVG icons for reliability
 const GithubIcon = () => (
@@ -167,22 +168,25 @@ export function Header() {
     },
     {
       icon: SpotifyIcon,
-      href: "https://open.spotify.com/album/7d5fJGUBbTlQcw2g5KqRSD?si=Z9oJ2gMNShyWc9zPQYhKSg",
+      href: "https://open.spotify.com/artist/6bTyTs2yXIVg3DX5uDH0s0?si=fnwrMwcHTzWEAp4l1DA7Xg",
       label: "Spotify",
     },
     { icon: AppleMusicIcon, label: "Apple Music" },
     {
       icon: YouTubeMusicIcon,
-      href: "https://youtube.com/playlist?list=OLAK5uy_k67q5bEF-ZwgZGLwpgQcTCYo_ZdkdmqPU&si=Vdbu144Odvh1Nbe9",
-      label: "YouTube Music",
+      href: "https://youtube.com/channel/UCyOX2lEfW2KEI1aCDylNTZQ?si=K5rnkSJ5UTOYaOxO",
+      label: "YouTube",
     },
   ];
 
   return (
     <header className="mb-16">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight mb-6">
-        {t.greeting}
-      </h1>
+      <div className="flex items-start justify-between gap-4 mb-6">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-tight">
+          {t.greeting}
+        </h1>
+        <ThemeToggle />
+      </div>
       <div className="flex gap-4">
         {socialLinks.map(({ icon: Icon, href, label }) =>
           href ? (
@@ -191,7 +195,7 @@ export function Header() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black hover:opacity-60 transition-opacity"
+              className="text-foreground hover:opacity-60 transition-opacity"
               aria-label={label}
             >
               <Icon />
@@ -199,7 +203,7 @@ export function Header() {
           ) : (
             <span
               key={label}
-              className="text-black"
+              className="text-foreground"
               aria-label={`${label} (no URL yet)`}
               title={`${label} (no URL yet)`}
             >

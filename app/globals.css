@@ -1,19 +1,172 @@
 @import "tailwindcss";
 
-:root {
-  --background: #FAF9F6;
+@property --wash-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --wash-alpha {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.5;
+}
+
+:root,
+:root.light {
+  --background: #faf9f6;
   --foreground: #000000;
+  --muted: #4b5563;
+  --faint: #6b7280;
+  --glow: #ffd7a1;
+  --shade: #e8c48a;
+  --warmth: #c99655;
+  color-scheme: light;
+}
+
+:root.dark {
+  --background: #141311;
+  --foreground: #f3f0e8;
+  --muted: #a39e93;
+  --faint: #868176;
+  --glow: #9a8b74;
+  --shade: #070605;
+  --warmth: #5a4e42;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --background: #141311;
+    --foreground: #f3f0e8;
+    --muted: #a39e93;
+    --faint: #868176;
+    --glow: #9a8b74;
+    --shade: #070605;
+    --warmth: #5a4e42;
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  background-color: var(--background);
+}
+
 body {
-  background: var(--background);
+  isolation: isolate;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  --wash-scale: 1;
+  --wash-alpha: 0.5;
+  animation: wash-breathe 15s ease-in-out infinite;
+}
+
+:root.dark body {
+  animation-name: wash-breathe-soft;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) body {
+    animation-name: wash-breathe-soft;
+  }
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  inset: -12%;
+  background-repeat: no-repeat;
+  transform: scale(var(--wash-scale));
+  transform-origin: center;
+  opacity: var(--wash-alpha);
+}
+
+body::before {
+  background-image:
+    radial-gradient(
+      ellipse 115% 90% at 18% 22%,
+      var(--glow) 0%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 120% 92% at 86% 78%,
+      var(--warmth) 0%,
+      transparent 82%
+    );
+}
+
+body::after {
+  background-image:
+    radial-gradient(
+      ellipse 108% 84% at 52% 48%,
+      var(--shade) 0%,
+      transparent 78%
+    );
+}
+
+@keyframes wash-breathe {
+  0%,
+  100% {
+    --wash-scale: 1;
+    --wash-alpha: 0.28;
+  }
+  50% {
+    --wash-scale: 1.14;
+    --wash-alpha: 0.78;
+  }
+}
+
+@keyframes wash-breathe-soft {
+  0%,
+  100% {
+    --wash-scale: 1;
+    --wash-alpha: 0.2;
+  }
+  50% {
+    --wash-scale: 1.14;
+    --wash-alpha: 0.46;
+  }
+}
+
+.theme-toggle .when-dark {
+  display: none;
+}
+
+:root.dark .theme-toggle .when-light {
+  display: none;
+}
+
+:root.dark .theme-toggle .when-dark {
+  display: inline;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .theme-toggle .when-light {
+    display: none;
+  }
+
+  :root:not(.light) .theme-toggle .when-dark {
+    display: inline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  :root.dark body,
+  :root:not(.light) body {
+    animation: none;
+  }
 }

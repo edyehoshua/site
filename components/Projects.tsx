@@ -35,23 +35,17 @@ export function Projects() {
 
   const projects: Project[] = [
     {
-      name: "davar.bible",
+      name: "davar",
       description: t.projectDescriptions.davar,
       url: "https://davar.bible",
       githubUrl: "https://github.com/jhonnyisaacc/davar",
       isWip: false,
     },
     {
-      name: "nave",
-      description: t.projectDescriptions.nave,
-      githubUrl: "https://github.com/jhonnyisaacc/nave",
+      name: "rocket",
+      description: t.projectDescriptions.rocket,
+      githubUrl: "https://github.com/jhonnyisaacc/rocket",
       isWip: false,
-    },
-    {
-      name: "qahal",
-      description: t.projectDescriptions.qahal,
-      githubUrl: "https://github.com/jhonnyisaacc/qahal",
-      isWip: true,
     },
     {
       name: "car",
@@ -69,26 +63,33 @@ export function Projects() {
         {projects.map((project) => (
           <li key={project.name} className="flex items-center gap-3">
             <span>—</span>
-            <span className="text-black">{project.name}</span>
+            <a
+              href={project.url ?? project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground no-underline hover:opacity-60 transition-opacity"
+            >
+              {project.name}
+            </a>
             {project.url && (
               <a
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:opacity-60 transition-opacity"
+                className="text-foreground hover:opacity-60 transition-opacity"
                 aria-label={`Open ${project.name}`}
               >
                 <LinkIcon />
               </a>
             )}
-            <span className="text-gray-600">{project.description}</span>
+            <span className="text-muted">{project.description}</span>
             {project.isWip && (
-              <span className="font-mono italic text-sm text-gray-500">
+              <span className="font-mono italic text-sm text-faint">
                 {t.wip}
               </span>
             )}
             {project.isPrivate && (
-              <span className="font-mono italic text-sm text-gray-500">
+              <span className="font-mono italic text-sm text-faint">
                 {t.privateLabel}
               </span>
             )}
@@ -97,7 +98,7 @@ export function Projects() {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black hover:opacity-60 transition-opacity"
+                className="text-foreground hover:opacity-60 transition-opacity"
                 aria-label={`GitHub repository for ${project.name}`}
               >
                 <GithubIcon />
