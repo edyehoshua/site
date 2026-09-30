@@ -68,7 +68,17 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   --wash-scale: 1;
   --wash-alpha: 0.5;
-  animation: wash-breathe 24s ease-in-out infinite;
+  animation: wash-breathe 15s ease-in-out infinite;
+}
+
+:root.dark body {
+  animation-name: wash-breathe-soft;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) body {
+    animation-name: wash-breathe-soft;
+  }
 }
 
 body::before,
@@ -88,12 +98,12 @@ body::before {
   background-image:
     radial-gradient(
       ellipse 115% 90% at 18% 22%,
-      color-mix(in srgb, var(--glow) 55%, transparent) 0%,
+      var(--glow) 0%,
       transparent 80%
     ),
     radial-gradient(
       ellipse 120% 92% at 86% 78%,
-      color-mix(in srgb, var(--warmth) 42%, transparent) 0%,
+      var(--warmth) 0%,
       transparent 82%
     );
 }
@@ -102,7 +112,7 @@ body::after {
   background-image:
     radial-gradient(
       ellipse 108% 84% at 52% 48%,
-      color-mix(in srgb, var(--shade) 36%, transparent) 0%,
+      var(--shade) 0%,
       transparent 78%
     );
 }
@@ -111,11 +121,23 @@ body::after {
   0%,
   100% {
     --wash-scale: 1;
-    --wash-alpha: 0.4;
+    --wash-alpha: 0.28;
   }
   50% {
-    --wash-scale: 1.045;
-    --wash-alpha: 0.72;
+    --wash-scale: 1.14;
+    --wash-alpha: 0.78;
+  }
+}
+
+@keyframes wash-breathe-soft {
+  0%,
+  100% {
+    --wash-scale: 1;
+    --wash-alpha: 0.2;
+  }
+  50% {
+    --wash-scale: 1.14;
+    --wash-alpha: 0.46;
   }
 }
 
@@ -142,7 +164,9 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body {
+  body,
+  :root.dark body,
+  :root:not(.light) body {
     animation: none;
   }
 }
