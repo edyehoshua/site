@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
-@property --wash-x {
-  syntax: "<percentage>";
+@property --wash-scale {
+  syntax: "<number>";
   inherits: true;
-  initial-value: 18%;
+  initial-value: 1;
 }
 
-@property --wash-x-alt {
-  syntax: "<percentage>";
+@property --wash-alpha {
+  syntax: "<number>";
   inherits: true;
-  initial-value: 82%;
+  initial-value: 0.5;
 }
 
 :root,
@@ -66,9 +66,9 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
-  --wash-x: 18%;
-  --wash-x-alt: 82%;
-  animation: wash-travel 6s ease-in-out infinite alternate;
+  --wash-scale: 1;
+  --wash-alpha: 0.5;
+  animation: wash-breathe 24s ease-in-out infinite;
 }
 
 body::before,
@@ -77,44 +77,45 @@ body::after {
   position: fixed;
   z-index: -1;
   pointer-events: none;
-  inset: 0;
+  inset: -12%;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
+  transform: scale(var(--wash-scale));
+  transform-origin: center;
+  opacity: var(--wash-alpha);
 }
 
 body::before {
   background-image:
     radial-gradient(
-      ellipse 42% 58% at var(--wash-x) 40%,
-      var(--glow) 0%,
-      transparent 58%
+      ellipse 115% 90% at 18% 22%,
+      color-mix(in srgb, var(--glow) 55%, transparent) 0%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 36% 50% at var(--wash-x-alt) 62%,
-      var(--warmth) 0%,
-      transparent 56%
+      ellipse 120% 92% at 86% 78%,
+      color-mix(in srgb, var(--warmth) 42%, transparent) 0%,
+      transparent 82%
     );
 }
 
 body::after {
-  opacity: 0.85;
   background-image:
     radial-gradient(
-      ellipse 34% 48% at var(--wash-x-alt) 34%,
-      var(--shade) 0%,
-      transparent 54%
+      ellipse 108% 84% at 52% 48%,
+      color-mix(in srgb, var(--shade) 36%, transparent) 0%,
+      transparent 78%
     );
 }
 
-@keyframes wash-travel {
-  from {
-    --wash-x: 18%;
-    --wash-x-alt: 82%;
+@keyframes wash-breathe {
+  0%,
+  100% {
+    --wash-scale: 1;
+    --wash-alpha: 0.4;
   }
-  to {
-    --wash-x: 82%;
-    --wash-x-alt: 18%;
+  50% {
+    --wash-scale: 1.045;
+    --wash-alpha: 0.72;
   }
 }
 
