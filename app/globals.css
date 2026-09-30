@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@property --wash-x {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 18%;
+}
+
+@property --wash-x-alt {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 82%;
+}
+
 :root,
 :root.light {
   --background: #faf9f6;
@@ -54,6 +66,9 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  --wash-x: 18%;
+  --wash-x-alt: 82%;
+  animation: wash-travel 6s ease-in-out infinite alternate;
 }
 
 body::before,
@@ -71,50 +86,35 @@ body::after {
 body::before {
   background-image:
     radial-gradient(
-      ellipse 46% 40% at 38% 32%,
+      ellipse 42% 58% at var(--wash-x) 40%,
       var(--glow) 0%,
-      transparent 64%
+      transparent 58%
     ),
     radial-gradient(
-      ellipse 42% 38% at 62% 68%,
+      ellipse 36% 50% at var(--wash-x-alt) 62%,
       var(--warmth) 0%,
-      transparent 66%
+      transparent 56%
     );
-  animation: paper-drift 18s ease-in-out infinite alternate;
-  animation-delay: -7s;
 }
 
 body::after {
+  opacity: 0.85;
   background-image:
     radial-gradient(
-      ellipse 40% 44% at 64% 30%,
+      ellipse 34% 48% at var(--wash-x-alt) 34%,
       var(--shade) 0%,
-      transparent 62%
-    ),
-    radial-gradient(
-      ellipse 38% 36% at 34% 70%,
-      color-mix(in srgb, var(--glow) 80%, transparent) 0%,
-      transparent 62%
+      transparent 54%
     );
-  animation: paper-drift-alt 18s ease-in-out infinite alternate;
-  animation-delay: -7s;
 }
 
-@keyframes paper-drift {
+@keyframes wash-travel {
   from {
-    opacity: 0.35;
+    --wash-x: 18%;
+    --wash-x-alt: 82%;
   }
   to {
-    opacity: 1;
-  }
-}
-
-@keyframes paper-drift-alt {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.3;
+    --wash-x: 82%;
+    --wash-x-alt: 18%;
   }
 }
 
@@ -140,74 +140,8 @@ body::after {
   }
 }
 
-/* Light paper needs a shared inhale/exhale. Separate fades were cancelling
-   each other out, so the page stayed evenly lit. */
-:root.light body::before,
-:root:not(.dark) body::before {
-  animation-name: light-inhale;
-  animation-duration: 9s;
-  animation-delay: -3s;
-}
-
-:root.light body::after,
-:root:not(.dark) body::after {
-  animation-name: light-exhale;
-  animation-duration: 9s;
-  animation-delay: -3s;
-}
-
-:root.dark body::before {
-  animation-name: paper-drift;
-  animation-duration: 18s;
-  animation-delay: -7s;
-}
-
-:root.dark body::after {
-  animation-name: paper-drift-alt;
-  animation-duration: 18s;
-  animation-delay: -7s;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) body::before {
-    animation-name: paper-drift;
-    animation-duration: 18s;
-    animation-delay: -7s;
-  }
-
-  :root:not(.light) body::after {
-    animation-name: paper-drift-alt;
-    animation-duration: 18s;
-    animation-delay: -7s;
-  }
-}
-
-@keyframes light-inhale {
-  from {
-    opacity: 0.22;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes light-exhale {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.18;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  :root body::before,
-  :root body::after,
-  :root.light body::before,
-  :root.light body::after,
-  :root.dark body::before,
-  :root.dark body::after {
+  body {
     animation: none;
-    opacity: 1;
   }
 }
